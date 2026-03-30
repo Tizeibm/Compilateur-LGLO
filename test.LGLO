@@ -1,0 +1,10 @@
+var x <-- 5#
+
+si (x == 5){
+    ecrire('hello')#
+} sinonsi (x==3) {
+    x <-- 7#
+}
+sinon {
+    lire x#
+}
