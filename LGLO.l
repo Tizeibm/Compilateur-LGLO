@@ -1,8 +1,17 @@
 %{
   #include <stdlib.h>
   #include "LGLO.tab.h"
+  int line_number = 1;           
+  int column_number = 1;         
 
-  void yyerror(char *s);
+  #define YY_USER_ACTION \
+    yylloc.first_line = line_number; \
+    yylloc.first_column = column_number; \
+    yylloc.last_line = line_number; \
+    yylloc.last_column = column_number + yyleng - 1; \
+    column_number += yyleng;
+
+  void yyerror(const char *msg);
 %}
 
 %option noyywrap
@@ -14,20 +23,16 @@
 "lire"    { return LIRE; }
 "ecrire"  { return ECRIRE; }
 "si"      { return SI; }
-"alors"   { return ALORS; }
 "sinon"   { return SINON; }
-"sinonsi" { return SINONSI; }
-"finsi"   { return FINSI; }
 "tantque" { return TANTQUE; }
-"faire"   { return FAIRE; }
-"fintantque"  { return FINTANTQUE; }
 "pour"    { return POUR; }
-"finpour" { return FINPOUR; }
+"sinonsi" { return SINONSI; }
 "fonction"  { return FONCTION; }
-"finfon"    { return FINFON; }
 "procedure" { return PROCEDURE; }
-"finproc"   { return FINPROC; }
 "retourner" { return RETOURNER; }
+"&&"    { return ET; }
+"||"    { return OU; }
+"," { return VIRGULE; }
 
 "<--"   { return FLECHE; }
 "<>"    { return PASEGAL; }
@@ -40,10 +45,30 @@
 "'"     { return APOS; }
 "("     { return PAROUV; }
 ")"     { return PARFERM; }
+"{"     { return ACCOUV; }
+"}"     { return ACCFERM; }
 
-[0-9]+  { return NOMBRE; }
-[a-zA-Z][a-zA-Z0-9_]*    { return IDENTI; }  
+"+"     { return PLUS; }
+"-"     { return MOINS; }
+"*"     { return FOIS; }
+"/"     { return DIVISE; }
+"%"     { return MODULO; }
+"^"     { return PUISSANCE; }
 
-[ \t\n] {               } 
-.   { printf("Erreur lexical : '%s' ligne %d\n", yytext, yylineno); }
+"++"  { return INCR; }
+"--"  { return DECR; }
+
+
+
+[0-9]+(\.[0-9]+)?  { yylval.num = atof(yytext); return NOMBRE; }
+[a-zA-Z][a-zA-Z0-9_]* { yylval.str = strdup(yytext); return IDENTI; } 
+
+[ \t] {               } 
+
+\n  {
+      line_number++;
+      column_number = 1;
+  }
+
+. { printf("Caractere suspect trouve : '%s' (ASCII: %d)\n", yytext, yytext[0]); }
 %%
