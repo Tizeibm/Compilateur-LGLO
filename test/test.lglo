@@ -1,0 +1,33 @@
+var x <-- 5#
+
+si (x == 5){
+    ecrire('hello')#
+} sinonsi (x==3) {
+    x <-- 7#
+} sinon {
+    lire x#
+}
+
+var y <-- 10#
+y++#
+
+pour(x=0# x<10# x++){
+    ecrire('hey')#
+}
+
+tantque(x < 100){
+    x++#
+}
+
+fonction calculer(a, b){
+    var res <-- a + b * 2#
+    retourner res#
+}
+
+procedure afficher(msg){
+    ecrire(msg)#
+}
+
+calculer(3, 4)#
+afficher('resultat')#
+

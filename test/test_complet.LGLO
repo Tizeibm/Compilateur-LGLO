@@ -1,0 +1,60 @@
+// === TEST DES DECLARATIONS ===
+var x#
+var y <-- 10#
+c<--90#
+const PI <-- 3.14#
+
+// === TEST DES OPERATIONS ARITHMETIQUES ===
+x <-- 5 + 3 * 2#
+// y <-- (x / 2) ^ 2#
+x++#
+--y#
+
+// === TEST DES ENTREES / SORTIES ===
+ecrire('Entrez une valeur pour x')#
+lire(x)#
+ecrire(x)#
+ecrire('Calcul termine')#
+
+// === TEST DES STRUCTURES CONDITIONNELLES ===
+si (x == 10) {
+    ecrire('X vaut dix')#
+} sinonsi (x > 10) {
+    ecrire('X est superieur')#
+} sinon {
+    ecrire('X est inferieur')#
+}
+
+// === TEST DES BOUCLES ===
+
+// Boucle Tant Que
+tantque (x < 20) {
+    x <-- x + 1#
+}
+
+// Boucle Pour
+// Note : Verifiez bien que votre grammaire accepte 'x=0#' ou 'x <-- 0#'
+pour (x <-- 0# x < 5# x++) {
+    ecrire(x)#
+}
+
+// === TEST DES FONCTIONS ET PROCEDURES ===
+
+fonction calculerSurface(rayon, coeff) {
+    var resultat <-- rayon * rayon * PI#
+    resultat <-- resultat * coeff#
+    retourner resultat#
+}
+
+procedure saluer(nom) {
+    ecrire('Bonjour')#
+    ecrire(nom)#
+}
+
+// === TEST DES APPELS ===
+var surface#
+surface <-- calculerSurface(5, 2)#
+saluer('Utilisateur')#
+
+// Test d'affectation avec chaine (si supporté par votre grammaire APOS IDENTI APOS)
+x <-- 100#

@@ -8,3 +8,9 @@ si (x == 5){
 sinon {
     lire x#
 }
+
+y++#
+
+pour(x=0#x<10#x++){
+    ecrire('hey')#
+}

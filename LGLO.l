@@ -1,6 +1,8 @@
 %{
   #include <stdlib.h>
+  #include <string.h> 
   #include "LGLO.tab.h"
+
   int line_number = 1;           
   int column_number = 1;         
 
@@ -30,13 +32,18 @@
 "fonction"  { return FONCTION; }
 "procedure" { return PROCEDURE; }
 "retourner" { return RETOURNER; }
+"," { return VIRGULE; }
+
 "&&"    { return ET; }
 "||"    { return OU; }
-"," { return VIRGULE; }
+"et"    { return ET; }
+"ou"    { return OU; }
+
 
 "<--"   { return FLECHE; }
 "<>"    { return PASEGAL; }
 "=="    { return EQUIVAL; }
+"="     { return EGAL; }
 ">"     { return SUP; }
 ">="    { return SUPEGAL; }
 "<"     { return INF; }
@@ -61,9 +68,12 @@
 
 
 [0-9]+(\.[0-9]+)?  { yylval.num = atof(yytext); return NOMBRE; }
+"'"[^"'"\n]*"'" { yylval.str = strdup(yytext); return STRING; }
 [a-zA-Z][a-zA-Z0-9_]* { yylval.str = strdup(yytext); return IDENTI; } 
 
-[ \t] {               } 
+[//].*  { } 
+
+[ \t] { } 
 
 \n  {
       line_number++;
