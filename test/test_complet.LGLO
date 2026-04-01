@@ -33,7 +33,6 @@ tantque (x < 20) {
 }
 
 // Boucle Pour
-// Note : Verifiez bien que votre grammaire accepte 'x=0#' ou 'x <-- 0#'
 pour (x <-- 0# x < 5# x++) {
     ecrire(x)#
 }

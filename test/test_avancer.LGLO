@@ -1,30 +1,27 @@
-// ==========================================
-// TEST AVANCÉ DU COMPILATEUR LGLo
-// ==========================================
 
-// 1. Déclarations et constantes
+// Déclarations et constantes
 var score#
 var message <-- 'Initialisation'#
 const VERSION <-- 1.0#
 v<--70#
 const SEUIL <-- 50#
 
-// 2. Arithmétique complexe (Vérification des priorités)
+// Arithmétique complexe (Vérification des priorités)
 // Teste : Parenthèses, Puissance, Division et Modulo
 var calcul#
 calcul <-- (10 + 5) * 2 ^ 3 #/// (4 - 1) % 2#
 score <-- 100#
 
-// 3. Incrémentation et Décrémentation
+// Incrémentation et Décrémentation
 score++#
 --score#
 
-// 4. Entrées / Sorties avec chaînes complexes
+// Entrées / Sorties avec chaînes complexes
 ecrire('--- Debut du programme ---')#
 ecrire('Veuillez saisir votre identifiant :')#
 lire(score)#
 
-// 5. Structures conditionnelles imbriquées (SI / SINONSI / SINON)
+// Structures conditionnelles imbriquées
 si (score >= SEUIL et score <= 100) {
     ecrire('Resultat : Admis')#
     si (score == 100) {
@@ -38,7 +35,7 @@ si (score >= SEUIL et score <= 100) {
     ecrire('Erreur : Score invalide')#
 }
 
-// 6. Boucles (Tantque et Pour)
+// Boucles (Tantque et Pour)
 var i <-- 0#
 tantque (i < 5) {
     ecrire('Tour de boucle tantque')#
@@ -49,7 +46,7 @@ pour (var j <-- 1# j <= 3# j++) {
     ecrire('Iteration du pour')#
 }
 
-// 7. Définition de fonctions et procédures
+// Définition de fonctions et procédures
 fonction multiplier(a, b) {
     var res <-- a * b#
     retourner res#
@@ -61,7 +58,7 @@ procedure formaterSortie(valeur, texte) {
     ecrire(valeur)#
 }
 
-// 8. Appels (Procédure seule et Fonction dans expression)
+// Appels (Procédure seule et Fonction dans expression)
 var total#
 total <-- multiplier(10, 5) + 10#
 formaterSortie(total, 'Calcul final termine')#

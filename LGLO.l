@@ -21,6 +21,8 @@
 
 %%
 "var"   {return VAR; }
+"list"   { return LIST; }
+"dict"   { return DICT; }
 "const"   { return CONST; }
 "lire"    { return LIRE; }
 "ecrire"  { return ECRIRE; }
@@ -54,6 +56,9 @@
 ")"     { return PARFERM; }
 "{"     { return ACCOUV; }
 "}"     { return ACCFERM; }
+"["     { return CROUV; }
+"]"     { return CROFERM; }
+":"     { return DEUX_POINTS; }
 
 "+"     { return PLUS; }
 "-"     { return MOINS; }
@@ -80,5 +85,8 @@
       column_number = 1;
   }
 
-. { printf("Caractere suspect trouve : '%s' (ASCII: %d)\n", yytext, yytext[0]); }
+. { fprintf(stderr, "   ERREUR LEXICAL\n");
+    fprintf(stderr, "   Ligne: %d\n", line_number);
+    fprintf(stderr, "   Colonne: %d\n", column_number);
+    fprintf(stderr, "   Token: '%s'\n", yytext); }
 %%
